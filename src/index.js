@@ -1,42 +1,52 @@
+//Initial imports for react
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+//Define first arrow function called Hello to greet the user
 const Hello = (props) => {
 	
-	return(
-		<div>
-			<p>Hello {props.name} you are {props.age} years old!</p>
-		</div>
-	)
+//Define current date from the date library called now
+	const now = new Date()
 	
-	
-}
-
-const App = () => {
-	
+//Log and print the greeting from hello function
 	console.log('Hello from component')
 	
-	const now = new Date()
-	const a = 10
-	const b = 20
-	const name = 'Peter'
-	const age = '11'
-	
-	
+//Return the HTML output from the function rendered inside the DIV tag
 	return(
 
-	<div>
-		<h1>
-			Greetings, it is {now.toString()}
-		</h1>
-		<Hello name = {name} age = {age}/>
-		<Hello name = "Maya" age = {10 + 12} />
-		<Hello />
-		<p>
-		{a} plus {b} is {a+b}
-		</p>
-	</div>
+//DIV tagg for wesite wrapper output
+		<div>
+		
+//P tag used to create the output
+			<p>Hello {props.name} you are {props.age} years old!</p>
+			
+//Used the to string function to turn the time to string
+			<p>Greetings, it is {now.toString()}</p>
+		</div>
+	)
+}
 
-)}
+//Define App function using props
+const App = (props) => {
+	
+//Define the counter variable that is using the properties function to store data
+	const {counter} = props
+	
+//REturn the output of the counted in the DIV tag of the html
+	return(
+		<div>{counter}</div>
+		
+	)
+}
+
+//Create a variable called counter to create an initial staring point
+let counter = 1
+
+
+//Function used to render the react that needs to be called everytime something new is rendered to the screen
+ReactDOM.render(
+	<App counter = {counter}/>,
+	document.getElementById('root')
+)
 
 ReactDOM.render(<App />, document.getElementById('root'))
