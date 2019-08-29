@@ -1,5 +1,5 @@
 //Initial imports for react
-import React from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 
 //Define first arrow function called Hello to greet the user
@@ -14,13 +14,8 @@ const Hello = (props) => {
 //Return the HTML output from the function rendered inside the DIV tag
 	return(
 
-//DIV tagg for wesite wrapper output
+//DIV tag for wesite wrapper output
 		<div>
-		
-//P tag used to create the output
-			<p>Hello {props.name} you are {props.age} years old!</p>
-			
-//Used the to string function to turn the time to string
 			<p>Greetings, it is {now.toString()}</p>
 		</div>
 	)
@@ -30,9 +25,39 @@ const Hello = (props) => {
 const App = (props) => {
 	
 //Define the counter variable that is using the properties function to store data
-	const {counter} = props
+	const [counter, setCounter] = useState(0)
 	
-//REturn the output of the counted in the DIV tag of the html
+	
+	
+/* 	const addOne = () => {
+		setCounter(counter + 1)
+	}
+	
+	const resetButton = () => {
+		setCounter(0)
+	} */
+	
+	const setToValue = (value) => setCounter(value)
+	
+	return(
+		<div>
+			<div>
+				{counter}
+			</div>
+			<button onClick = {() => setToValue(counter + 1)}>
+				Plus
+			</button>
+			<button onClick = {() => setToValue(0)}>
+				Zero
+			</button>
+		</div>
+	)
+	
+/* 	setTimeout(() => setCounter(counter + 1),1000) */
+	
+	console.log('rendering...', counter)
+	
+//Return the output of the counted in the DIV tag of the html
 	return(
 		<div>{counter}</div>
 		
@@ -42,11 +67,24 @@ const App = (props) => {
 //Create a variable called counter to create an initial staring point
 let counter = 1
 
-
 //Function used to render the react that needs to be called everytime something new is rendered to the screen
-ReactDOM.render(
-	<App counter = {counter}/>,
+const refreshApp = () => {
+	
+	ReactDOM.render(<App counter = {counter}/>,
 	document.getElementById('root')
-)
+	)
+}
+const refreshHello = () => {
+	
+	ReactDOM.render(<Hello/>,
+	document.getElementById('root')
 
-ReactDOM.render(<App />, document.getElementById('root'))
+	)
+}
+
+refreshApp()
+
+/* setInterval(() => {
+	refreshApp()
+	counter += 1
+},1000) */
