@@ -27,7 +27,31 @@ const App = (props) => {
 //Define the counter variable that is using the properties function to store data
 	const [counter, setCounter] = useState(0)
 	
+	const setToValue = (value) => setCounter(value)
+	const Display = ({ counter }) => {
+		return (
+			<div>{counter}</div>
+		)
+		
+	}
 	
+	const Button = (props) => (
+		<button onClick = {props.onClick}>
+			{props.text}
+		</button>
+	)
+	
+	return(
+		<div>
+			<Display counter = {counter}/>
+			<button onClick = {() => setToValue(counter + 1)}>
+				Plus
+			</button>
+			<button onClick = {() => setToValue(0)}>
+				Zero
+			</button>
+		</div>
+	)
 	
 /* 	const addOne = () => {
 		setCounter(counter + 1)
@@ -37,7 +61,7 @@ const App = (props) => {
 		setCounter(0)
 	} */
 	
-	const setToValue = (value) => setCounter(value)
+/* 	const setToValue = (value) => setCounter(value)
 	
 	return(
 		<div>
@@ -51,17 +75,34 @@ const App = (props) => {
 				Zero
 			</button>
 		</div>
-	)
+	) */
 	
 /* 	setTimeout(() => setCounter(counter + 1),1000) */
 	
+	/* const setToValue = (value) => {
+		return () => {
+			setCounter(value)
+		}
+	} */
+	
+/* 	return(
+	
+		<div>
+			<div>
+				{counter}
+			</div>
+			<button onClick = {setToValue(counter + 1)}>
+				Plus
+			</button>
+			<button onClick = {setToValue(0)}>
+				Zero
+			</button>
+		</div>
+	
+	) */
+	
 	console.log('rendering...', counter)
 	
-//Return the output of the counted in the DIV tag of the html
-	return(
-		<div>{counter}</div>
-		
-	)
 }
 
 //Create a variable called counter to create an initial staring point
