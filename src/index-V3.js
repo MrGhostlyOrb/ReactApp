@@ -2,32 +2,51 @@
 import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 
-
-
-const App = () => {
+const Button = (props) => (
 	
-	const [good, setGood] = useState(0)
-	const [neutral, setNeutral] = useState(0)
-	const [bad, setBad] = useState(0)
+		<button onCLick = {props.handleClick}>
+			{props.text}
+		</button>
 	
-	return(
+	)
+
+const Display = (props) => (
+
+	<div>
+		{props.value}
+	</div>
+
+)
+
+const App = props => {
+	
+	const [value, setValue] = useState(10)
+	
+	const setToValue = newValue => {
+		
+		setValue(newValue)
+		
+	}
+	
+	return (
 	
 		<div>
-			<button onClick = (setGood) => {setGood + 1}>
-				Good
-			</button>
+			<Display value = {value} />
+			<Button handleClick = {() => setToValue(1000)} text = "Thousand" />
+			<Button handleClick = {() => setToValue(0)} text = "Reset" />
+			<Button handleClick = {() => setToValue(value + 1)} text = "Add" />
 		</div>
 	
 	)
-	
 }
 
-
-
-ReactDOM.render(<App/>,
-document.getElementById('root')
-)
-
+const refreshApp = () => {
+	
+	ReactDOM.render(<App/>,
+	document.getElementById('root')
+	)
+}
+refreshApp()
 
 
 
