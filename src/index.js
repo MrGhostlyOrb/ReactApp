@@ -2,18 +2,32 @@
 import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 
+const Button = (props) => (
+	
+		<button onCLick = {props.handleClick}>
+			{props.text}
+		</button>
+	
+	)
+
+const Display = (props) => (
+
+	<div>
+		{props.value}
+	</div>
+
+)
+
 const App = (props) => {
 	
 	const [value, setValue] = useState(10)
 	
-	return(
+	const setToValue = newValue => {
+		
+		setValue(newValue)
+		
+	}
 	
-		<div>
-			{value}
-			<button onClick = {() => setValue(0)}>reset to zero</button>
-		</div>
-	
-	)
 	
 }
 
